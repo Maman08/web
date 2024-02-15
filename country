@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Please select any country</h1>
+        <select name="--select--" id="select">
+            <option value="--select--">--select--</option>
+            <option value="India">India</option>
+            <option value="Japan">Japan</option>
+            <option value="USA">USA</option>
+        </select>
+        <h2>Capital is: <p id="capital"></p></h2>
+    </div>
+    <script>
+        document.getElementById("select").addEventListener("change",function(){
+            var country=document.getElementById("select").value;
+        var cap=document.getElementById("capital");
+        console.log(typeof(country));
+        console.log(country);
+        if(country==="--select--"){
+            
+            cap.innerHTML="";
+        }
+        else if(country==="India"){
+            cap.innerHTML="Delhi";
+        }
+        else if(country==="Japan"){
+            cap.innerHTML="Tokyo";
+        }
+        else if (country === "USA") {
+            cap.innerHTML = "Washington D.C.";
+        }
+        })
+    </script>
+</body>
+</html>
