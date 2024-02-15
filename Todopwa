@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .container{
+        max-width: 90%;
+        margin: auto;
+    }
+    .heading{
+        text-align: center;
+    }
+    .para{
+        border-bottom: 1px solid gainsboro;
+    }
+    .completed{
+        text-decoration: line-through;
+    }
+    #btn{
+        background-color: rgb(20, 193, 20);
+        padding: 4px;
+        border: none;
+        color: white;
+    }
+</style>
+<body>
+    <div class="container">
+        <h1 class="heading">ToDo App</h1>
+       <div> <input id="input" type="text" placeholder="Enter a task">
+             <button id="btn">Add</button></div>
+
+        <div id="task">
+        </div>     
+    </div>
+    <script>
+        const btn=document.getElementById("btn");
+        const task=document.getElementById("task");
+        btn.addEventListener("click",function(){
+        const input=document.getElementById("input").value;
+         const para=document.createElement("p");
+         para.setAttribute("id","para");
+         para.textContent=input;
+        task.appendChild(para);
+        para.addEventListener("click",function(){
+            para.classList.toggle("completed");
+        })
+        input="";
+        })
+    </script>
+</body>
+</html>
+
+
+<script>
+    const btn = document.getElementById("btn");
+    const task = document.getElementById("task");
+
+    btn.addEventListener("click", function() {
+        const input = document.getElementById("input").value;
+        if (input.trim() !== "") { // Check if input is not empty or only contains spaces
+            const para = document.createElement("p");
+            para.textContent = input;
+            task.appendChild(para);
+
+            para.addEventListener("click", function() {
+                para.classList.toggle("completed");
+            });
+
+            document.getElementById("input").value = ""; // Reset the input field
+        } else {
+            alert("Please enter a task!");
+        }
+    });
+</script>
+
+
+const CACHE_NAME = 'my-pwa-cache-v1';
+
+const urlsToCache = [
+
+'/',
+
+'pgrm4.html',
+
+'prgm4.css',
+
+'app.js'
+
+];
+
+self.addEventListener('install', (event) => {
+
+event.waitUntil(
+
+caches.open(CACHE_NAME)
+
+.then((cache) => cache.addAll(urlsToCache))
+
+);
+
+});
+
+self.addEventListener('fetch', (event) => {
+
+event.respondWith(
+
+caches.match(event.request
+
+.then((response) => response || fetch(event.request))
+);
+});
+
+
